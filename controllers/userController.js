@@ -8,18 +8,20 @@ import {
   deleteDoc,
   query,
   where,
+  setDoc,
 } from "firebase/firestore";
 import { db } from "../firebase.js";
 
 export const addUser = async (req, res) => {
   const data = req.body;
   const { username, email, password, uid } = data;
-  let newUser;
-  const userRef = collection(db, "Users");
-  newUser = await userRef
-    .doc(uid)
-    .set({ username, email, password })
-    .catch((err) => console.log(err));
+
+  await setDoc(doc(db, "Users", uid), {
+    username,
+    email,
+    password,
+    uid,
+  });
   res.send(uid);
 };
 
