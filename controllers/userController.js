@@ -16,12 +16,7 @@ export const addUser = async (req, res) => {
   const data = req.body;
   const { username, email, password, uid } = data;
 
-  await setDoc(doc(db, "Users", uid), {
-    username,
-    email,
-    password,
-    uid,
-  });
+  await setDoc(doc(db, "Users", uid), data);
   res.send(uid);
 };
 
