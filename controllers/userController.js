@@ -13,12 +13,14 @@ import { db } from "../firebase.js";
 
 export const addUser = async (req, res) => {
   const data = req.body;
+  const { username, email, password, uid } = data;
   let newUser;
   const userRef = collection(db, "Users");
-  newUser = await addDoc(userRef, {
-    data,
-  }).catch((err) => console.log(err));
-  res.send(newUser.id);
+  newUser = await userRef
+    .doc(uid)
+    .set({ username, email, password })
+    .catch((err) => console.log(err));
+  res.send(uid);
 };
 
 export const getUser = async (req, res) => {
