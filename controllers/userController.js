@@ -30,6 +30,12 @@ export const getUser = async (req, res) => {
   res.send(singleUser);
 };
 
+export const getUsers = async (req, res) => {
+  const usersRef = collection(db, "Users");
+  const userList = await (await getDoc(userRef)).data();
+  res.send(userList);
+};
+
 export const deleteUser = async (req, res) => {
   const id = req.params.uid;
   const userRef = doc(db, "Users", id);
