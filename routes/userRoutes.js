@@ -15,7 +15,7 @@ import {
 } from "../controllers/userController.js";
 const userRouter = express.Router();
 
-userRouter.post("/registro", addUser);
+userRouter.post("/registro/:uid", addUser);
 userRouter.post("/login", userLogin);
 userRouter.get("/:uid", getUser);
 userRouter.put("/:uid", editUser);

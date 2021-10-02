@@ -15,7 +15,7 @@ export const addTask = async (req, res) => {
   let NewTask;
   const Task_10 = collection(db, "Users", id, "tasks");
   NewTask = await addDoc(Task_10, {
-    data,
+    ...data,
   }).catch((err) => console.log(err));
   res.send(NewTask.id);
 };

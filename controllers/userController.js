@@ -14,9 +14,8 @@ import { db } from "../firebase.js";
 
 export const addUser = async (req, res) => {
   const data = req.body;
-  const { username, email, password, uid } = data;
-
-  await setDoc(doc(db, "Users", uid), data);
+  const uid = req.params.uid;
+  await setDoc(doc(db, "Users", uid), { ...data });
   res.send(uid);
 };
 
