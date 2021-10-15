@@ -33,7 +33,11 @@ export const getTasks = async (req, res) => {
       message: err,
     })
   );
-  const taskList = taskSnapshot.docs.map((data) => data.data());
+  const taskList = taskSnapshot.docs.map((data) => {
+    const t_id = data._key.path.segments.pop();
+    const object = data.data();
+    return { ...object, id: t_id };
+  });
   res.send(taskList);
 };
 
