@@ -34,7 +34,8 @@ export const getTasks = async (req, res) => {
     })
   );
   const taskList = taskSnapshot.docs.map((data) => {
-    const t_id = data._key.path.segments.pop();
+    const array = data._key.path.segments;
+    const t_id = array[array.length - 1];
     const object = data.data();
     return { ...object, id: t_id };
   });
