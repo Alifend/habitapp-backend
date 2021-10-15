@@ -12,4 +12,6 @@ app.get("/", async (req, res) => {
   res.send("This is an API");
 });
 
-app.listen(PORT);
+app.listen(PORT, () => {
+  console.log("now working");
+});
